@@ -32,13 +32,13 @@ try {
     console.log("Connection failed");
 }
 
-
-
 // Enable CORS for the client origin
 //changed - app.use(cors({ origin: "http://localhost:5173"}));
 // origin: "http://127.0.0.1:5173"
 // Use express.json() middleware to parse JSON request bodies
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({ credentials: true }))
+app.use(cors({ credentials: true , origin: "http://localhost:5173"}))
 app.use('/be-et/', mainRouter);
+
+

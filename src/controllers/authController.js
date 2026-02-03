@@ -65,8 +65,10 @@ export const login = async (req, res, next) => {
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
             maxAge: 7 * 24 * 60 * 60 * 1000 
         })
+        
+        // res.setHeader('Access-Control-Allow-Origin','http://localhost:5173')
 
-        return res.json({ success: true })
+        return res.json({ success: true, email: email })
 
     } catch (err) {
         return res.json({success: false, message: err.message})
