@@ -59,16 +59,16 @@ export const login = async (req, res, next) => {
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {expiresIn: '7d'});
 
         // maxAge 7 days exipry time for the cookie
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
-            maxAge: 7 * 24 * 60 * 60 * 1000 
-        })
-        
+        // res.cookie('token', token, {
+        //     httpOnly: true,
+        //     secure: process.env.NODE_ENV === 'production',
+        //     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+        //     maxAge: 7 * 24 * 60 * 60 * 1000 
+        // })
+        sessionStorage.setItem('token', token);
         // res.setHeader('Access-Control-Allow-Origin','http://localhost:5173')
 
-        return res.json({ success: true, email: email })
+        return res.json({ success: true, user: user })
 
     } catch (err) {
         return res.json({success: false, message: err.message})
