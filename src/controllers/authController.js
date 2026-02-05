@@ -65,10 +65,9 @@ export const login = async (req, res, next) => {
         //     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
         //     maxAge: 7 * 24 * 60 * 60 * 1000 
         // })
-        sessionStorage.setItem('token', token);
         // res.setHeader('Access-Control-Allow-Origin','http://localhost:5173')
 
-        return res.json({ success: true, user: user })
+        return res.json({ success: true, user: user, token: token })
 
     } catch (err) {
         return res.json({success: false, message: err.message})
@@ -77,11 +76,11 @@ export const login = async (req, res, next) => {
 
 export const logout = async (req, res, next) => {
     try {
-        res.clearCookie('token', {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
-        })
+        // res.clearCookie('token', {
+        //     httpOnly: true,
+        //     secure: process.env.NODE_ENV === 'production',
+        //     sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+        // })
 
         return res.json({success: true, message: "Logged Out"});
 
