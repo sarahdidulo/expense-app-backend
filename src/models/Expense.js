@@ -18,6 +18,10 @@ const expense = new Schema({
     description: {
         type: String,
         required: [false, '']
+    },
+    transactor_id: { 
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }
 });
 

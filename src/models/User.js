@@ -15,7 +15,8 @@ const user = new Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+    transactions: [{ type: Schema.Types.ObjectId, ref: 'Expense' }]
 })
 
 // const user = new Schema({
