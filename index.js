@@ -39,6 +39,7 @@ try {
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ credentials: true , origin: "http://localhost:5173"}))
+// app.use(cors({ credentials: true , origin: "https://expense-tracker-app-phx9.onrender.com"}))
 app.use('/be-et/', mainRouter);
 
 
