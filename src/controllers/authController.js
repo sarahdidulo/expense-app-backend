@@ -28,7 +28,7 @@ export const register = async (req, res, next) => {
         //     maxAge: 7 * 24 * 60 * 60 * 1000 
         // })
 
-        res.send({success: 'Success', data: newUser.name});
+        res.send({success: true, data: newUser.name});
 
     } catch (err) {       
         res.status(400).send(`ERROR: ${err}`);
