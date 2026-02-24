@@ -4,6 +4,6 @@ import { addExpense, getAllTransactions } from "./../controllers/expenseControll
 const router = express.Router();
 
 router.post('/add-expense/', addExpense);
-router.get('/all/', getAllTransactions);
+router.get('/all/:id', getAllTransactions);
 
 export default router;
