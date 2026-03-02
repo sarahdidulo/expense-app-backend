@@ -42,33 +42,13 @@ function convertTransactionDate (transaction_date) {
 
 export const filterTransactions = async(req, res, next) => {
     try {
-        const month = req.params.month;
-        const year = req.params.year;
+        const category = req.params.category;
         const user_id = req.params.id;
-        const startDate = convertTransactionDate(new Date(`${year}-${month}-01`));
-        const endDate = convertTransactionDate(new Date(`${year}-${Number(month) + 1}-01`));
-        // if(month === '' && year == '') {
-        //     console.log('no month and year yet')
-        //     res.send('')
-        // } 
-        console.log("start date", startDate);
-        console.log("end date", endDate);
-
-        // let userTransactions = await Expense.where('transactor_id', user_id)
-        
-        const execExample = async () => {
-        const result = await Expense.where('transactor_id', user_id)
-            .aggregate([{
-                $project: { name: 1, category: 0 }
-            }])
+    
+        const transactions = await Expense.where('transactor_id', user_id)
+            .where('category', category)
             .exec();
-        console.log(result);
-        }
-        execExample();
-    
-        // res.send(userTransactions);
-    
-        
+        res.send(transactions);
     } catch (err) {
         res.status(400).send(`ERROR: ${err}`);
     }
