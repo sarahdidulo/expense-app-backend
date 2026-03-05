@@ -19,6 +19,10 @@ const expense = new Schema({
         type: String,
         required: [false, '']
     },
+    amount: {
+        type: Number,
+        required: [true, reqErrMsg]
+    },
     transactor_id: { 
         type: Schema.Types.ObjectId,
         ref: 'User'

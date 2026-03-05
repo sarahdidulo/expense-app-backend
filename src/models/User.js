@@ -3,9 +3,22 @@ const {Schema, model} = mongoose;
 const reqErrMsg = '*This is a required field.'
 
 const user = new Schema({
-    name: {
+    username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
+    },
+    firstname: {
+        type: String,
+        required: false
+    },
+    middlename: {
+        type: String,
+        required: false
+    },
+    lastname: {
+        type: String,
+        required: false,
     },
     email: {
         type: String,

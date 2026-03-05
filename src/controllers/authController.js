@@ -3,9 +3,9 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const register = async (req, res, next) => {
-    const {name, email, password} = req.body;
+    const {username, email, password} = req.body;
 
-    if(!name || !email || !password) {
+    if(!username || !email || !password) {
         return res.json({success: false, message: 'Missing Details'})
     }
     try {
@@ -16,7 +16,7 @@ export const register = async (req, res, next) => {
         }
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const newUser = await User.create({name, email, password: hashedPassword});
+        const newUser = await User.create({username, email, password: hashedPassword});
 
         const token = jwt.sign({id: newUser._id}, process.env.JWT_SECRET, {expiresIn: '7d'});
 
@@ -28,7 +28,7 @@ export const register = async (req, res, next) => {
         //     maxAge: 7 * 24 * 60 * 60 * 1000 
         // })
 
-        res.send({success: true, data: newUser.name});
+        res.send({success: true, data: newUser.username});
 
     } catch (err) {       
         res.status(400).send(`ERROR: ${err}`);
