@@ -41,6 +41,6 @@ app.use(cookieParser());
 // app.use(cors({ credentials: true , origin: "https://expense-tracker-app-phx9.onrender.com"}))
 
 app.use(cors({ credentials: true , origin: `${process.env.PROD_URL}`}));
-app.use('/be-et/', mainRouter);
+app.use('be-et/', mainRouter);
 
 
