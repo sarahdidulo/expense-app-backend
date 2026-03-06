@@ -40,7 +40,7 @@ app.use(cookieParser());
 // app.use(cors({ credentials: true , origin: "http://localhost:5173"}))
 // app.use(cors({ credentials: true , origin: "https://expense-tracker-app-phx9.onrender.com"}))
 
-app.use(cors({ credentials: true , origin: `https://expense-tracker-app-sigma-ecru.vercel.app`}));
+app.use(cors({ credentials: true , origin: `https://expense-tracker-app-sigma-ecru.vercel.app/`}));
 app.use('be-et/', mainRouter);
 
 
